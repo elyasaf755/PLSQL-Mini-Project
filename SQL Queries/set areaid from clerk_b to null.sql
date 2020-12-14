@@ -1,0 +1,2 @@
+Update clerk_b Set areaid = null;
+commit;

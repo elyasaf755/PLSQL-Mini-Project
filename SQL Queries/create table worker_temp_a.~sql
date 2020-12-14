@@ -1,0 +1,8 @@
+create table worker_temp_a(
+       workerid integer,
+       citizenid integer,
+       startdate date,
+       enddate date,
+       salary float,
+       type integer
+)

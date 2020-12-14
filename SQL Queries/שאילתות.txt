@@ -1,0 +1,73 @@
+CREATE TABLE HEALTHINSTID_TEMP (
+       HEALTHINSTID number(3) NOT NULL,
+       PRIMARY KEY (HEALTHINSTID),
+       FOREIGN KEY (HEALTHINSTID) REFERENCES HEALTHINSTITUTION (HEALTHINSTID)
+);
+
+alter table healthinstid_temp 
+add rownumber integer;
+alter table temp add rownumber integer;
+
+
+CREATE TABLE HEALTHINSTID_TEMP (
+       HEALTHINSTID number(3) NOT NULL,
+       PRIMARY KEY (HEALTHINSTID),
+       FOREIGN KEY (HEALTHINSTID) REFERENCES HEALTHINSTITUTION (HEALTHINSTID)
+);
+
+update select * from department as t
+set healthinstid = (select healthinstid from department_b tmp where tmp.depid = depid);
+
+update department d
+set healthinstid = (select healthinstid from department_b tmp where tmp.depid = d.depid)
+
+insert into DEPARTMENT (HEALTHINSTID)
+select HEALTHINSTID 
+from HEALTHINSTID_TEMP;
+
+update department d
+set healthinstid = (select healthinstid from department_b tmp where tmp.depid = d.depid),
+    numberofbeds = (select numberofbeds from department_b tmp where tmp.depid = d.depid);
+
+update healthinstid_temp h
+set numberofbeds = (select numberofbeds from department_b tmp where tmp.healthinstid = h.healthinstid);
+
+DROP TABLE HEALTHINSTID_TEMP;
+
+
+create table temp (
+       depid integer not null,
+       healthinstid integer,
+       numberofbeds integer
+);
+
+
+update healthinstid_temp 
+set healthinstid = (select healthinstid from healthinstitution tmp where tmp.healthinstid = healthinstid)
+
+
+insert into healthinstid_temp (healthinstid)
+select healthinstid 
+from healthinstitution;
+
+
+update temp t
+set healthinstid = (select healthinstid from department_b d where d.depid = t.depid);
+
+
+update worker_temp w
+set citizenid = (select citizenid from citizen_b c where w.workername = c.citizenname)
+
+UPDATE worker_b set enddate = TO_DATE(
+              TRUNC(
+                   DBMS_RANDOM.VALUE(TO_CHAR(DATE '2020-01-01','J')
+                                    ,TO_CHAR(DATE '2040-12-31','J')
+                                    )
+                    ),'J'
+               )
+               WHERE enddate IS NULL
+
+update worker w
+set workername = (select citizenname from citizen c where w.citizenid = c.citizenid)
+
+כל העובדים שנולדו באוקטובר שהם בני 30+ ושהבוס שלהם הוא 5003

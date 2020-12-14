@@ -1,0 +1,12 @@
+create table CLERK
+(
+  clerkid   INTEGER,
+  clerkname VARCHAR2(32),
+  bossid    INTEGER,
+  areaid    INTEGER,
+  salary    FLOAT,
+  hireyear  INTEGER,
+  rating    INTEGER,
+  PRIMARY KEY (clerkid),
+  FOREIGN KEY (areaid) REFERENCES area(areaid)
+)
